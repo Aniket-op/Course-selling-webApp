@@ -1,7 +1,7 @@
 const Admin = require("../models/adminModel");
 const Course = require("../models/courseModel");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const adminSecret = process.env.ADMIN_SECRET;
 
 const generateJwtAdmin = (admin) => {
