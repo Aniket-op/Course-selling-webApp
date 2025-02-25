@@ -109,7 +109,8 @@ export const Appbar = () => {
               }
               {
                 isPurchasedCoursesPage && <Button
-                  variant="contained"
+                  id="allCourses"  
+                variant="contained"
                   onClick={() => {
                     navigate("/users/courses");
                   }}
@@ -142,7 +143,7 @@ export const Appbar = () => {
               <div className="navbtn">
               {
                  !isCreateCoursesPage && 
-                 <Button
+                 <Button id="addCourses"
                   variant="contained"
                   onClick={() => {
                     navigate("/admin/createCourse");
@@ -153,7 +154,7 @@ export const Appbar = () => {
               }
               {
                  isCreateCoursesPage &&
-                 <Button
+                 <Button id="allCourses"  
                   variant="contained"
                   onClick={() => {
                     navigate("/admin/courses");

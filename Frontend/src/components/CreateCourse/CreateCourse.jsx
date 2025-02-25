@@ -85,6 +85,7 @@ export const CreateCourse = () => {
 
           <div className="btn">
             <Button
+            id="createCourses"
               variant="contained"
               onClick={() => {
                 handleCreateCourse();

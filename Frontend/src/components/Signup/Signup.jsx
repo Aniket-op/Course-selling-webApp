@@ -70,7 +70,7 @@ export const Signup = () => {
           />
 
           <div className="btn">
-            <Button 
+            <Button id="btn_signup"
               variant="contained" 
               onClick={handleSignup} 
               disabled={loading}

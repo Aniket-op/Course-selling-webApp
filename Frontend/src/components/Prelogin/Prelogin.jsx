@@ -20,14 +20,14 @@ export const Prelogin = () => {
               <span>yourself by learning </span>
               <span>from industry experts.</span>
               <div>
-                <button
+                <button  id = "userLogin"
                   onClick={() => {
                     navigate("/users/login");
                   }}
                 >
                   Login
                 </button>
-                <button
+                <button  id = "userSignup"
                   onClick={() => {
                     navigate("/users/signup");
                   }}
@@ -44,14 +44,14 @@ export const Prelogin = () => {
               <span>and spread your knowledge by</span>
               <span>publishing your own course.</span>
               <div>
-                <button
+                <button id="adminSignin"
                   onClick={() => {
                     navigate("/admin/login");
                   }}
                 >
                   Login
                 </button>
-                <button
+                <button id = "adminLogin"
                   onClick={() => {
                     navigate("/admin/signup");
                   }}

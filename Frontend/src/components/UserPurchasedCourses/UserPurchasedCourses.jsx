@@ -33,7 +33,7 @@ export const UserPurchasedCourses = () => {
                 <div className="title">{course.title}</div>
                 <div className="description">{course.description}</div>
                 <div className="price">Price: {course.price} INR</div>
-                <button className="button"> View Course</button>
+                <button className="button" id="viewCourses"> View Course</button>
             </div>
         })
     }

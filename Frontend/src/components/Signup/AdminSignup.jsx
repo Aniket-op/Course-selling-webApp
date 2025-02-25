@@ -68,7 +68,8 @@ export const AdminSignup = () => {
           />
 
           <div className="btn">
-            <Button variant="contained" onClick={handleSignup}>
+            <Button id="btn_signup"
+             variant="contained" onClick={handleSignup}>
               Signup
             </Button>
             <div>
