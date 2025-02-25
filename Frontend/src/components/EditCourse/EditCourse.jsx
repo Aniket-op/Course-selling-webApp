@@ -93,7 +93,8 @@ function Editform({ course, setCourse }) {
     }).then((response) =>
       response.json().then((data) => {
         setCourse(editedCourse);
-        alert(data.message);
+        // alert(data.message);
+        toast.success(data.message);
       })
     );
   };

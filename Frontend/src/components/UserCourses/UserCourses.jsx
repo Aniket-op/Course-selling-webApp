@@ -5,6 +5,7 @@ import { loginState } from "../GlobalState";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Appbar } from "../Appbar/Appbar";
+import toast from "react-hot-toast";
 
 export const UserCourses = () => {
   const isUserLoggedin = useRecoilValue(loginState);
@@ -23,7 +24,8 @@ export const UserCourses = () => {
 
   const handleBuyCourse = (courseId) => {
     if (!isUserLoggedin.user) {
-      alert("Please Login/Signup before buying.");
+      // alert("Please Login/Signup before buying.");
+      toast.error("Please Login/Signup before buying.");
       navigate("/users/login");
       return;
     }
@@ -35,7 +37,8 @@ export const UserCourses = () => {
       })
       .then((response) => {
         const data = response.data;
-        alert(data.message);
+        // alert(data.message);
+        toast.success(data.message);
       });
   };
 

@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "./Signup.css";
 import { Appbar } from "../Appbar/Appbar";
 import { Aboutus, Footer } from "../LandingPage/Landing";
+import { toast } from "react-hot-toast";
 
 export const AdminSignup = () => {
 
@@ -14,7 +15,8 @@ export const AdminSignup = () => {
   const handleSignup = () => {
     if(!username || !password)
     {
-      alert("Please enter both the fields.");
+      // alert("Please enter both the fields.");
+      toast.error("Please enter both the fields.");
       return;
     }
     fetch(`http://localhost:3000/admin/signup` , {
@@ -29,7 +31,8 @@ export const AdminSignup = () => {
     }).then( res => {
       return res.json();
     }).then( data => {
-      alert(data.message);
+      // alert(data.message);
+      toast.success(data.message);
       if(data.token)
       {
         localStorage.setItem("admintoken",data.token);

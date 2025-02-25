@@ -12,10 +12,11 @@ import { RecoilRoot } from "recoil";
 import { UserPurchasedCourses } from "./components/userPurchasedCourses/userPurchasedCourses";
 import { AdminLogin } from "./components/Login/AdminLogin";
 import { AdminSignup } from "./components/Signup/AdminSignup";
-
+import {Toaster} from "react-hot-toast";
 function App() {
   return (
     <div className="app">
+      <Toaster position="top-center" />
       <RecoilRoot>
         <Router>
           <Routes>

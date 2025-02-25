@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import "./CreateCourse.css";
 import { Appbar } from "../Appbar/Appbar";
+import { toast } from "react-hot-toast";
+
 
 export const CreateCourse = () => {
   const [title, setTitle] = useState("");
@@ -11,7 +13,8 @@ export const CreateCourse = () => {
 
   const handleCreateCourse = () => {
     if (!title || !description || !price || !imageLink) {
-      alert("Please fill all the fields.");
+      // alert("Please fill all the fields.");
+      toast.error("Please fill all the fields.");
       return;
     }
     fetch("http://localhost:3000/admin/courses", {
@@ -31,7 +34,8 @@ export const CreateCourse = () => {
         return response.json();
       })
       .then((data) => {
-        alert(data.message);
+        // alert(data.message);
+        toast.success(data.message);
       });
   };
 
