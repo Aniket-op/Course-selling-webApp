@@ -20,7 +20,7 @@ export const Landing = () => {
               <span>Today</span>
             </div>
             <h2>
-              Unlock your potential with SkillSwap's online courses. Learn from
+              Unlock your potential with Sellcourse's online courses. Learn from
             </h2>
             <h2>industry experts and stay ahead of the competition.</h2>
           </div>
@@ -49,13 +49,13 @@ export const Aboutus = () => {
       <div className="rightsecond">
         <span>About us</span>
         <p>
-          At Skillswap, we are a leading company in providing online courses.
+          At Sellcourse, we are a leading company in providing online courses.
           Our mission is to provide a platform where individuals can enhance
           their skills and knowledge through a wide range of courses offered by
           industry experts and educators can share their knowledge and earn by
           their teaching skills. Whether you are looking to learn a new skill,
           upgrade your existing knowledge, explore a new field, or you want to
-          educate others, Skillswap is here to help you achieve your goals. With
+          educate others, Sellcourse is here to help you achieve your goals. With
           our user-friendly interface, comprehensive course catalog, and secure
           payment system, we strive to make learning experience seamless and
           enjoyable for our users.
@@ -78,15 +78,15 @@ export const Footer = () => {
         </div>
         <div className="rightfooter">
           <div>Contact us</div>
-          <span>Email: SkillSwap@gmail.com</span>
+          <span>Email: Sellcourse@gmail.com</span>
           <span>Contact: +91 9370837735</span>
         </div>
       </div>
-      <div className="credits">Designed and developed by - Kshitij Todkar</div>
+      <div className="credits">Test Automation Evaluation</div>
       <div className="copyright">
           <span>Copyright </span>
           <CopyrightIcon fontSize="large" />
-          <span>2023 SkillSwap | All rights reserved.</span>
+          <span>2025 Sellcourse | All rights reserved.</span>
       </div>
     </>
   );

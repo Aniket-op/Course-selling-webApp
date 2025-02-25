@@ -8,73 +8,83 @@ import { toast } from "react-hot-toast";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const [username,setUsername] = useState("");
-  const [password,setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    if(!username || !password)
-    {
-      // alert("Please enter both the fields.");
-      toast.error("Please enter both the fields.");
+  const handleLogin = async () => {
+    if (!username || !password) {
+      toast.error("Please enter both fields.");
       return;
     }
-    fetch(`http://localhost:3000/users/login` , {
-      method: "POST",
-      headers:{
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        username,
-        password
-      })
-    }).then( res => {
-      return res.json();
-    }).then( data => {
-      // alert(data.message);
-      toast.success(data.message);
-      if(data.token)
-      {
-        localStorage.setItem("usertoken",data.token);
-        navigate(`/users/courses`);
+
+    try {
+      setLoading(true);
+      const response = await fetch(`http://localhost:3000/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await response.json();
+      setLoading(false);
+
+      if (!response.ok) {
+        toast.error(data.message || "Login failed. Please try again.");
+        return;
       }
-    })
-  }
+
+      toast.success("Logged in successfully!");
+      localStorage.setItem("usertoken", data.token);
+      navigate("/users/courses");
+
+    } catch (error) {
+      setLoading(false);
+      console.error("Login error:", error);
+      toast.error("Something went wrong. Please try again.");
+    }
+  };
 
   return (
     <>
-    <Appbar />
-    <div className="login">
-      <div className="card">
-        <h1>Login</h1>
-        <TextField
-          margin="normal"
-          label="Username"
-          variant="outlined"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
-        <TextField
-          type="password"
-          margin="normal"
-          label="Password"
-          variant="outlined"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
+      <Appbar />
+      <div className="login">
+        <div className="card">
+          <h1>Login</h1>
+          <TextField
+            margin="normal"
+            label="Username"
+            variant="outlined"
+            onChange={(e) => setUsername(e.target.value)}
+            disabled={loading}
+          />
+          <TextField
+            type="password"
+            margin="normal"
+            label="Password"
+            variant="outlined"
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={loading}
+          />
 
-        <div className="btn">
-          <Button variant="contained" onClick={() => {handleLogin()}}>Login</Button>
-          <div>
-            Don't have an account ?
-            <Link to="/users/signup"> Signup</Link>
+          <div className="btn">
+            <Button 
+              variant="contained" 
+              onClick={handleLogin} 
+              disabled={loading}
+            >
+              {loading ? "Logging in..." : "Login"}
+            </Button>
+            <div>
+              Don't have an account? <Link to="/users/signup">Signup</Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <Aboutus />
-    <Footer />
+      <Aboutus />
+      <Footer />
     </>
   );
 };

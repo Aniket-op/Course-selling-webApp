@@ -66,7 +66,7 @@ export const Appbar = () => {
   return (
     <div className="appbar">
       <div className="left">
-        <div className="name">SkillSwap</div>
+        <div className="name">Sellcourse</div>
       </div>
       {!currentloginState.user && !currentloginState.admin ? (
         <div className="navitems">
