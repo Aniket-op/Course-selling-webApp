@@ -13,7 +13,6 @@ export const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
-<<<<<<< HEAD
     if (!username || !password) {
       toast.error("Please enter both fields.");
       return;
@@ -21,29 +20,19 @@ export const Login = () => {
 
     try {
       setLoading(true);
-=======
-      if (!username || !password) {
-        toast.error("Please enter both username and password.");
-        return;
-      }
-
-    try {
       toast.loading("Logging in...", { id: "login" });
->>>>>>> dcd05bf (Updated files)
-      const response = await fetch(`http://localhost:3000/users/login`, {
+
+      const response = await fetch("http://localhost:3000/users/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password }),
       });
 
       const data = await response.json();
-<<<<<<< HEAD
       setLoading(false);
-=======
       toast.dismiss("login");
->>>>>>> dcd05bf (Updated files)
 
       if (!response.ok) {
         toast.error(data.message || "Login failed. Please try again.");
@@ -53,14 +42,10 @@ export const Login = () => {
       toast.success("Logged in successfully!");
       localStorage.setItem("usertoken", data.token);
       navigate("/users/courses");
-
     } catch (error) {
-<<<<<<< HEAD
       setLoading(false);
       console.error("Login error:", error);
-=======
       toast.dismiss("login");
->>>>>>> dcd05bf (Updated files)
       toast.error("Something went wrong. Please try again.");
     }
   };
@@ -88,10 +73,10 @@ export const Login = () => {
           />
 
           <div className="btn">
-            <Button 
+            <Button
               id="btn_Login"
-              variant="contained" 
-              onClick={handleLogin} 
+              variant="contained"
+              onClick={handleLogin}
               disabled={loading}
             >
               {loading ? "Logging in..." : "Login"}
