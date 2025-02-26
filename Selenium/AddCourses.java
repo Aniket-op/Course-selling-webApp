@@ -6,7 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 
+<<<<<<< HEAD
 public class Addcourses {
+=======
+public class AddCourses {
+>>>>>>> dcd05bf (Updated files)
     static void waitTime(int a ){
         try {
             Thread.sleep(a);
