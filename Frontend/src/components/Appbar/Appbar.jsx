@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate, useLocation } from "react-router-dom";
-import "./Appbar.css";
 import { useRecoilState } from "recoil";
 import { loginState } from "../GlobalState";
 
@@ -28,7 +27,7 @@ export const Appbar = () => {
         .then((response) => {
           return response.json();
         })
-        .catch((err) => {})
+        .catch((err) => { })
         .then((data) => {
           setcurrentloginState({
             user: true,
@@ -38,7 +37,7 @@ export const Appbar = () => {
             setUserEmail(data.username);
           }
         })
-        .catch((err) => {});
+        .catch((err) => { });
     }
     if (localStorage.getItem("admintoken")) {
       fetch("http://localhost:3000/admin/me", {
@@ -49,7 +48,7 @@ export const Appbar = () => {
         .then((response) => {
           return response.json();
         })
-        .catch((err) => {})
+        .catch((err) => { })
         .then((data) => {
           setcurrentloginState({
             user: false,
@@ -59,130 +58,75 @@ export const Appbar = () => {
             setUserEmail(data.username);
           }
         })
-        .catch((err) => {});
+        .catch((err) => { });
     }
   }, []);
 
   return (
-    <div className="appbar">
-      <div className="left">
-        <div className="name">Sellcourse</div>
-      </div>
+    <div className="bg-[#111827] px-10 py-4 flex items-center justify-between shadow-md">
+      <div className="text-white text-4xl font-[Lobster]">Sellcourse</div>
+
       {!currentloginState.user && !currentloginState.admin ? (
-        <div className="navitems">
-          <span id="home" onClick={()=>{navigate("/")}}>Home</span>
-
-          <span id="about" onClick={() => {
-            let aboutcart = document.getElementById("aboutUs");
-            aboutcart.scrollIntoView({ behavior: "smooth" });
-          }} >About us</span>
-
-          <span id="follow" onClick={() => {
-            let followcart = document.getElementById("footer");
-            followcart.scrollIntoView({ behavior: "smooth" });
-          }}>Follow us</span>
-
-          <span id="contact" onClick={() => {
-            let contactcart = document.getElementById("footer");
-            contactcart.scrollIntoView({ behavior: "smooth" });
-          }}>Contact us</span>
-          
+        <div className="flex gap-6 text-lg text-gray-300">
+          {["Home", "About us", "Follow us", "Contact us"].map((text, idx) => (
+            <div
+              key={idx}
+              className="cursor-pointer hover:text-white transition-colors duration-200"
+              onClick={() => {
+                if (text === "Home") navigate("/");
+                else document.getElementById(text.includes("About") ? "aboutUs" : "footer")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              {text}
+            </div>
+          ))}
         </div>
       ) : (
-        <>
-          {currentloginState.user ? (
-            <div className="right">
-              <div className="user">
-                <AccountCircleIcon fontSize="large"/>{ userEmail}
-              </div>
-              <div className="navbtn">
-              {
-                isCoursesPage && <Button
-                  variant="contained"
-                  onClick={() => {
-                    navigate("/users/purchasedCourses");
-                    setAllCourseBtnVisible(true);
-                  }}
-                  >
-                    My courses
-                  </Button>
-              }
-              {
-                isPurchasedCoursesPage && <Button
-                  id="allCourses"  
-                variant="contained"
-                  onClick={() => {
-                    navigate("/users/courses");
-                  }}
-                  >
-                    All courses
-                  </Button>
-              }  
-              </div>
-              <div className="navbtn">
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    localStorage.removeItem("usertoken");
-                    navigate("/");
-                    setcurrentloginState({
-                      user: false,
-                      admin: false,
-                    });
-                  }}
-                >
-                  Logout
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div className="right">
-              <div className="user">
-              <AccountCircleIcon fontSize="large"/>{ userEmail}
-              </div>
-              <div className="navbtn">
-              {
-                 !isCreateCoursesPage && 
-                 <Button id="addCourses"
-                  variant="contained"
-                  onClick={() => {
-                    navigate("/admin/createCourse");
-                  }}
-                >
-                  Add course
-                </Button>
-              }
-              {
-                 isCreateCoursesPage &&
-                 <Button id="allCourses"  
-                  variant="contained"
-                  onClick={() => {
-                    navigate("/admin/courses");
-                  }}
-                >
-                  All courses
-                </Button>
-              }
-              </div>
-              <div className="navbtn">
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    localStorage.removeItem("admintoken");
-                    navigate("/");
-                    setcurrentloginState({
-                      user: false,
-                      admin: false,
-                    });
-                  }}
-                >
-                  Logout
-                </Button>
-              </div>
-            </div>
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2 text-gray-200 font-medium">
+            <AccountCircleIcon style={{ color: "white" }} fontSize="large" />
+            {userEmail}
+          </div>
+
+          {currentloginState.user && (
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#2563EB", color: "#fff" }}
+              onClick={() => {
+                navigate(isCoursesPage ? "/users/purchasedCourses" : "/users/courses");
+              }}
+            >
+              {isCoursesPage ? "My Courses" : "All Courses"}
+            </Button>
           )}
-        </>
+
+          {currentloginState.admin && (
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#2563EB", color: "#fff" }}
+              onClick={() => {
+                navigate(isCreateCoursesPage ? "/admin/courses" : "/admin/createCourse");
+              }}
+            >
+              {isCreateCoursesPage ? "All Courses" : "Add Course"}
+            </Button>
+          )}
+
+          <Button
+            variant="outlined"
+            style={{ borderColor: "#fff", color: "#fff" }}
+            onClick={() => {
+              localStorage.removeItem(currentloginState.user ? "usertoken" : "admintoken");
+              setcurrentloginState({ user: false, admin: false });
+              navigate("/");
+            }}
+          >
+            Logout
+          </Button>
+        </div>
       )}
     </div>
+
   );
 };
+
