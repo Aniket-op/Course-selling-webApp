@@ -57,6 +57,7 @@ export const UserCourses = () => {
               <div className="price">Price: {course.price} INR</div>
               <button
                 className="button"
+                id ={course._id}
                 onClick={() => {
                   handleBuyCourse(course._id);
                 }}
