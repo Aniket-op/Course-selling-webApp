@@ -22,12 +22,17 @@ export const Landing = () => {
             <p className="text-gray-300 text-lg">
               Unlock your potential with Sellcourse's online courses. Learn from industry experts and stay ahead of the competition.
             </p>
-            <button
-              className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-full flex items-center transition"
-              onClick={() => navigate("/start")}
-            >
-              Get Started <TrendingFlatIcon />
-            </button>
+            <div className="flex justify-center">
+              <button
+                className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-full flex items-center transition-all "
+                onClick={() => navigate("/start")}
+              >
+                Get Started <TrendingFlatIcon />
+
+              </button>
+            </div>
+
+
           </div>
           <div className="md:w-1/2">
             <img src={Image2} alt="Learning" className="rounded-2xl shadow-lg" />
