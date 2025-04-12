@@ -71,7 +71,7 @@ export const Appbar = () => {
           {["Home", "About us", "Follow us", "Contact us"].map((text, idx) => (
             <div
               key={idx}
-              className="cursor-pointer hover:text-white transition-colors duration-200"
+              className="cursor-pointer hover:text-white  transition-colors duration-200"
               onClick={() => {
                 if (text === "Home") navigate("/");
                 else document.getElementById(text.includes("About") ? "aboutUs" : "footer")?.scrollIntoView({ behavior: "smooth" });
