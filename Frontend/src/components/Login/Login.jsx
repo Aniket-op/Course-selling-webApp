@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
-import "./Login.css";
 import { Aboutus, Footer } from "../LandingPage/Landing";
 import { Appbar } from "../Appbar/Appbar";
 import { toast } from "react-hot-toast";
@@ -53,42 +52,63 @@ export const Login = () => {
   return (
     <>
       <Appbar />
-      <div className="login">
-        <div className="card">
-          <h1>Login</h1>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#0F172A] text-white px-4">
+        <div className="bg-[#1E293B] p-10 rounded-2xl shadow-lg w-full max-w-md space-y-6 my-20">
+          <h1 className="text-3xl font-bold text-center">User Login</h1>
+
           <TextField
+            fullWidth
             margin="normal"
             label="Username"
             variant="outlined"
             onChange={(e) => setUsername(e.target.value)}
             disabled={loading}
+            InputProps={{
+              style: { color: "white" },
+            }}
+            InputLabelProps={{
+              style: { color: "#cbd5e1" },
+            }}
           />
+
           <TextField
+            fullWidth
             type="password"
             margin="normal"
             label="Password"
             variant="outlined"
             onChange={(e) => setPassword(e.target.value)}
             disabled={loading}
+            InputProps={{
+              style: { color: "white" },
+            }}
+            InputLabelProps={{
+              style: { color: "#cbd5e1" },
+            }}
           />
 
-          <div className="btn">
-            <Button
-              id="btn_Login"
-              variant="contained"
-              onClick={handleLogin}
-              disabled={loading}
-            >
-              {loading ? "Logging in..." : "Login"}
-            </Button>
-            <div>
-              Don't have an account? <Link to="/users/signup">Signup</Link>
-            </div>
+          <Button
+            id="btn_Login"
+            variant="contained"
+            onClick={handleLogin}
+            disabled={loading}
+            className="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded-full transition"
+          >
+            {loading ? "Logging in..." : "Login"}
+          </Button>
+
+          <div className="text-center text-sm text-gray-400">
+            Don’t have an account?{" "}
+            <Link to="/users/signup" className="text-blue-400 hover:underline">
+              Signup
+            </Link>
           </div>
         </div>
+        <div>
+          <Aboutus />
+          <Footer />
+        </div>
       </div>
-      <Aboutus />
-      <Footer />
     </>
   );
 };
