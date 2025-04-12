@@ -12,7 +12,7 @@ export const Landing = () => {
   return (
     <>
       <Appbar />
-      <div className="bg-[#0F172A] text-white min-h-screen px-6">
+      <div className="bg-[#0F172A] text-white min-h-screen px-10">
         <div className="max-w-7xl mx-auto py-20 flex flex-col md:flex-row justify-between items-center gap-12">
           <div className="space-y-6 md:w-1/2 ">
             <h1 className="text-5xl font-bold leading-tight">
@@ -68,7 +68,7 @@ export const Aboutus = () => {
 export const Footer = () => {
   return (
     <>
-      <div id="footer" className="bg-[#1E293B] py-10 text-gray-300 px-6">
+      <div id="footer" className="bg-[#1E293B] py-10 text-gray-300 px-6 rounded-3xl">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h3 className="text-xl font-semibold text-white mb-2">Follow us</h3>
