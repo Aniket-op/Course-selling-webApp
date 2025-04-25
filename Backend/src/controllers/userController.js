@@ -126,7 +126,48 @@ const userController = {
       console.error("Error fetching purchased courses:", error);
       res.status(500).json({ message: "Failed to retrieve purchased courses." });
     }
-  }
-};
+  },
+  // Controller function to search courses
+  searchCourses: async (req, res) => {
+    try {
+      const { query = '' } = req.query;
 
+      console.log('Received search request with query:', query);
+      console.log('Full request query:', req.query);
+
+      // If query is empty or only whitespace, return all courses
+      if (!query.trim()) {
+        console.log('Empty query, returning all courses');
+        const allCourses = await Course.find({});
+        return res.status(200).json({ courses: allCourses });
+      }
+
+      // Constructing search criteria
+      const searchCriteria = {
+        $or: [
+          { title: { $regex: query, $options: 'i' } },
+          { description: { $regex: query, $options: 'i' } }
+        ]
+      };
+      console.log('Search criteria:', JSON.stringify(searchCriteria, null, 2));
+
+      // Perform search query
+      const courses = await Course.find(searchCriteria);
+      console.log(`Found ${courses.length} courses for query: "${query}"`);
+
+      return res.status(200).json({ courses });
+    } catch (error) {
+      console.error('Search error details:', {
+        message: error.message,
+        stack: error.stack,
+        query: req.query
+      });
+
+      return res.status(500).json({
+        message: "Error searching courses",
+        error: error.message
+      });
+    }
+  }
+}
 module.exports = userController;
