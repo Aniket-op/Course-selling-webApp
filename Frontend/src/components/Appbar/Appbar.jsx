@@ -64,7 +64,7 @@ export const Appbar = () => {
 
   return (
     <div className="bg-[#111827] px-10 py-4 flex items-center justify-between shadow-md">
-      <div className="text-white text-4xl font-[Lobster]">Sellcourse</div>
+      <div className="text-white text-4xl font-[Lobster]" onClick={() => navigate("/")}>Sellcourse</div>
 
       {!currentloginState.user && !currentloginState.admin ? (
         <div className="flex gap-6 text-lg text-gray-300">
