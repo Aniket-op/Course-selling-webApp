@@ -14,8 +14,8 @@ public class AdminLogin {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver","Drivers\\chromedriver.exe");
+    public static void main() {
+        System.setProperty("webdriver.chrome.driver","C:\\browser driver\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("http://localhost:5173/");
         driver.manage().window().maximize();
@@ -40,10 +40,9 @@ public class AdminLogin {
         WebElement btn_Login = driver.findElement(By.id("btn_Login"));
         password.sendKeys("tiet@123");
         btn_Login.click();
-        
-        password.clear();
-        waitTime(1000);
 
+        waitTime(1000);
+        password.clear();
         password.sendKeys("tietD@123");
         btn_Login.click();
         

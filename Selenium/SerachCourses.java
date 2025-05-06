@@ -1,12 +1,12 @@
 package org.example;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-
-public class Userlogin {
+public class SerachCourses
+{
     static void waitTime(int a ){
         try {
             Thread.sleep(a);
@@ -47,23 +47,44 @@ public class Userlogin {
         btn_Login.click();
         waitTime(3000);
 
+//        My courses
         WebElement myCourses = driver.findElement(By.id("courses"));
         myCourses.click();
         waitTime(1500);
 
-        WebElement allCourses = driver.findElement(By.id("courses"));
-        allCourses.click();
+
+        myCourses = driver.findElement(By.id("courses"));
+        myCourses.click();
         waitTime(1500);
 
-        WebElement selinumCourse = driver.findElement(By.id("681398388528cbc8de346e68"));
-        selinumCourse.click();
-        waitTime(1500);
+
+        WebElement searchBar = driver.findElement(By.id("search"));
+        searchBar.sendKeys("selinum");
+
+        WebElement searchBtn = driver.findElement(By.id("search_btn"));
+        searchBtn.click();
+        waitTime(3000);
+
+        searchBar.clear();
+        searchBar.sendKeys("hamster");
+        searchBtn.click();
+        waitTime(3000);
+
+//        add buy courses
+        WebElement seleniumCourse = driver.findElement(By.xpath("//button[@name='buy_btn']"));
+        seleniumCourse.click();
 
         myCourses = driver.findElement(By.id("courses"));
         myCourses.click();
         waitTime(3000);
 
+// view courses
+        WebElement view = driver.findElement(By.xpath("//button[@name='view']"));
+        view.click();
+        waitTime(3000);
+        WebElement close = driver.findElement(By.xpath("//button[@name='close']"));
+        close.click();
+        waitTime(3000);
         driver.close();
-
     }
 }

@@ -13,8 +13,8 @@ public class AdminSignup {
             e.printStackTrace();
         }
     }
-	public static void main(String[] args) {
-		System.setProperty("webdriver.chrome.driver","Drivers\\chromedriver.exe");
+	public static void main() {
+        System.setProperty("webdriver.chrome.driver","C:\\browser driver\\chromedriver.exe");
 	    WebDriver driver = new ChromeDriver();
 	    driver.get("http://localhost:5173/");
 	    driver.manage().window().maximize();
@@ -39,7 +39,7 @@ public class AdminSignup {
         password.sendKeys("tietD@123");
         
         waitTime(2000);
-        WebElement btn_signup = driver.findElement(By.id("btn_signup"));
+        WebElement btn_signup = driver.findElement(By.id("btn_Signup"));
         btn_signup.click();
         
         waitTime(3000);
