@@ -2,6 +2,7 @@ package org.example;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,7 +15,7 @@ public class Addcourses {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) {
+    public static void main() {
         System.setProperty("webdriver.chrome.driver","C:\\browser driver\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("http://localhost:5173/");
@@ -39,14 +40,14 @@ public class Addcourses {
         WebElement btn_Login = driver.findElement(By.id("btn_Login"));
         password.sendKeys("wrongpass");
         btn_Login.click();
-        password.clear();
-        waitTime(1000);
 
+        waitTime(1000);
+        password.clear();
         password.sendKeys("correctpass");
         btn_Login.click();
         waitTime(2000);
 
-        WebElement addCourses = driver.findElement(By.id("addCourses"));
+        WebElement addCourses = driver.findElement(By.id("courses"));
         addCourses.click();
         waitTime(1000);
 
@@ -57,7 +58,7 @@ public class Addcourses {
 
         title.isDisplayed();
         title.isEnabled();
-        title.sendKeys("How to write Selenium code");
+        title.sendKeys("New Selenium code Course");
 
         description.isDisplayed();
         description.isEnabled();
@@ -80,7 +81,7 @@ public class Addcourses {
 
         waitTime(3000);
 
-        WebElement viewCourses = driver.findElement(By.id("allCourses"));
+        WebElement viewCourses = driver.findElement(By.id("courses"));
         viewCourses.click();
         waitTime(3000);
 
