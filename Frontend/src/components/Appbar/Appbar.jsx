@@ -90,6 +90,7 @@ export const Appbar = () => {
 
           {currentloginState.user && (
             <Button
+              id="courses"
               variant="contained"
               style={{ backgroundColor: "#2563EB", color: "#fff" }}
               onClick={() => {
@@ -102,6 +103,7 @@ export const Appbar = () => {
 
           {currentloginState.admin && (
             <Button
+              id="courses"
               variant="contained"
               style={{ backgroundColor: "#2563EB", color: "#fff" }}
               onClick={() => {

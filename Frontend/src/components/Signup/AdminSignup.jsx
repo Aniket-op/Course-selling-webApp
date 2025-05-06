@@ -88,7 +88,7 @@ export const AdminSignup = () => {
 
 
 
-          <Button id="btn_Login"
+          <Button id="btn_Signup"
             variant="contained"
             onClick={handleSignup}
             disabled={loading}

@@ -59,6 +59,7 @@ export const CourseDetailsModal = ({ course, onClose }) => {
         {/* Modal Footer */}
         <div className="p-4 border-t flex justify-end">
           <button
+            name='close'
             onClick={onClose}
             className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
           >
