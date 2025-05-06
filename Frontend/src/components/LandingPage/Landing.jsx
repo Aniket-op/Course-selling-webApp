@@ -24,6 +24,7 @@ export const Landing = () => {
             </p>
             <div className="flex justify-center">
               <button
+                id="startbtn"
                 className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-full flex items-center transition-all "
                 onClick={() => navigate("/start")}
               >

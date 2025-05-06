@@ -143,16 +143,26 @@ const userController = {
       }
 
       // Constructing search criteria
+      // const searchCriteria = {
+      //   $or: [
+      //     { title: { $regex: query, $options: 'i' } },
+      //     { description: { $regex: query, $options: 'i' } }
+      //   ]
+      // };
+      
       const searchCriteria = {
-        $or: [
-          { title: { $regex: query, $options: 'i' } },
-          { description: { $regex: query, $options: 'i' } }
-        ]
+        $text: { $search: query }
       };
+      
       console.log('Search criteria:', JSON.stringify(searchCriteria, null, 2));
 
       // Perform search query
       const courses = await Course.find(searchCriteria);
+
+      // const courses = await Course.find(searchCriteria, {
+      //   score: { $meta: "textScore" }
+      // }).sort({ score: { $meta: "textScore" } });
+
       console.log(`Found ${courses.length} courses for query: "${query}"`);
 
       return res.status(200).json({ courses });

@@ -36,43 +36,43 @@ export const UserCourses = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    
+
     if (!searchTerm.trim()) {
-        fetchAllCourses();
-        return;
+      fetchAllCourses();
+      return;
     }
 
     setIsLoading(true);
     try {
-        // Encode the search term to handle special characters
-        const encodedQuery = encodeURIComponent(searchTerm.trim());
-        console.log('Searching for:', encodedQuery);
-        
-        const response = await axios.get(
-            `http://localhost:3000/users/courses/search?query=${encodedQuery}`
-        );
-        
-        console.log('Search response:', response.data);
-        
-        if (response.data && response.data.courses) {
-            setCourses(response.data.courses);
-            if (response.data.courses.length === 0) {
-                toast.info("No courses found matching your search");
-            }
-        } else {
-            console.error('Unexpected response format:', response.data);
-            toast.error("Invalid response format from server");
+      // Encode the search term to handle special characters
+      const encodedQuery = encodeURIComponent(searchTerm.trim());
+      console.log('Searching for:', encodedQuery);
+
+      const response = await axios.get(
+        `http://localhost:3000/users/courses/search?query=${encodedQuery}`
+      );
+
+      console.log('Search response:', response.data);
+
+      if (response.data && response.data.courses) {
+        setCourses(response.data.courses);
+        if (response.data.courses.length === 0) {
+          toast.info("No courses found matching your search");
         }
+      } else {
+        console.error('Unexpected response format:', response.data);
+        toast.error("Invalid response format from server");
+      }
     } catch (error) {
-        console.error('Search error:', error);
-        if (error.response) {
-            console.error('Error response:', error.response.data);
-            toast.error(error.response.data.message || "Error searching courses");
-        } else {
-            toast.error("Error connecting to server");
-        }
+      console.error('Search error:', error);
+      if (error.response) {
+        console.error('Error response:', error.response.data);
+        toast.error(error.response.data.message || "Error searching courses");
+      } else {
+        toast.error("Error connecting to server");
+      }
     } finally {
-        setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -108,11 +108,12 @@ export const UserCourses = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Appbar />
-      
+
       {/* Search Section */}
       <div className="bg-white shadow">
         <form onSubmit={handleSearch} className="max-w-4xl mx-auto p-4 flex gap-4">
           <input
+            id="search"
             type="text"
             placeholder="Search courses..."
             value={searchTerm}
@@ -120,11 +121,12 @@ export const UserCourses = () => {
             className="flex-1 px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
           />
           <button
+            id="search_btn"
             type="submit"
             disabled={isLoading}
             className={`px-6 py-2 rounded-lg text-white font-medium transition-colors
-              ${isLoading 
-                ? 'bg-gray-400 cursor-not-allowed' 
+              ${isLoading
+                ? 'bg-gray-400 cursor-not-allowed'
                 : 'bg-blue-600 hover:bg-blue-700'}`}
           >
             {isLoading ? "Searching..." : "Search"}
@@ -173,6 +175,8 @@ export const UserCourses = () => {
                       ₹{course.price}
                     </span>
                     <button
+                      name="buy_btn"
+                      id={course._id}
                       onClick={() => handleBuyCourse(course._id)}
                       className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
                     >
